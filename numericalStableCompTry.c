@@ -10,3 +10,5 @@ int main () {
 
     return 0;
 }
+
+// at around 10 zeros, the program stopped working properly
