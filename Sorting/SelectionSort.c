@@ -14,7 +14,8 @@ int main(int i, int array[x])
     // 
     printf("Enter number of elements in your list:");
     scanf("%d", &n);
-    printf("Enter %d Numbersn", n);
+    printf("Enter %d Numbers", n);
+    scanf("%d", &n);
     for (i = 0; i < n - 1; i++) {
         for(i = 0; i < n - 1; i++){
             pos = i;
