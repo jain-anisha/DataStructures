@@ -1,5 +1,7 @@
 #Data Structures
 
+This is my DStruc repo
+
 ##Bugs Galore
 
 One interesting bug I found (or rather, created):
