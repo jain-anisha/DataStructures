@@ -51,4 +51,5 @@ int main()
     }
     return 0;
 }
-// essentially got the sorting algo, just debugging the printing of the array
+// Debugged. Found an error for memory, fixed it by seeing that it was accessing memory not alocated to it & the selection sort algo...
+// ... was not swapping properly, since it needed an integer, and I was giving it an index element
