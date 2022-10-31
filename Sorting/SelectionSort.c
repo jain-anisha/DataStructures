@@ -1,3 +1,5 @@
+// for an array
+
 #include<stdio.h>
 #include<stdlib.h>
 void selectionSort(int n, int array[]);
