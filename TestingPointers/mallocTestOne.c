@@ -9,7 +9,7 @@ int main () {
     // a is just an address, that stores the location of 
     // this just allocates space in memory
     //if not careful of number of space in malloc, bad things happen
-    printf("value of y is %d originally \n", y);
+    printf("value of y is %d originally \n", a);
     y = *(a + 1);
     printf("Now, value of y is %d", y);
     /* this will go to the address of the next integer, which would be the next 4 bites */
