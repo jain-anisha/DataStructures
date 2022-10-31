@@ -10,7 +10,7 @@ While attempting to push my files to git then github, I found that it was not wo
 
 It was saying that I did not have access to the repo.
 
-Originally thought that my method of commiting to git was the issue, so looked to multiple ways to 
+Originally thought that my method of commiting to git was the issue, so looked to multiple ways to commit, thinking that I was just doing incorrectly. Essentially just stopped github for a while. 
 
 Found that the error was caused by previously commiting to git through different folders, then adding all these folders into one, and
 committing it again.
