@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
+void selectionSort(int n, int array[]);
+void swap(int* x, int* y);
 
 void swap(int* x, int* y)
 {
@@ -9,18 +11,18 @@ void swap(int* x, int* y)
     // swapping places of two different values
 }
 
-void selectionSort(int n, int array[]){
-    int minNum, j, i;
-
+void selectionSort(int n, int array[])
+{
+    int j, i, minNum, c;
     for (i = 0; i < n - 1; i++) {
-        minNum = i;
-        for(j = i + 1; i < n - 1; j++){
-            if (array[j] < array[minNum]){
-                minNum = j;
+        minNum = array[i];
+        for (j = i + 1; j < n; j++){
+            if (minNum > array[j]){
+                minNum = array[j];
+                c++;
+            if (c!=0)
+                swap(&array[i], &array[j]);
             }
-            if (minNum != i){
-                swap( &array[minNum], &array[i]);
-            } 
         }
 }
 }
@@ -31,18 +33,21 @@ int main()
     int n;
     printf("Enter number of elements in your list:");
     scanf("%d", &n);
-    int array[n];
+    //printf("%d", n);      check to see if storing properly
+    int array[n];           // array w/ n # of elements
     /*
     writing a loop
     need to allocate space for n integers*/
-    int i = 0;
-    for (i; i < n; i++){
-        printf("Enter Number %d", i);
+    int i;
+    printf("Enter the %d elements to be sorted.\n", n);
+    for (i = 0; i < n; i++){
         scanf("%d", &array[i]);
     }
     selectionSort(n, array);
-    for(int i=0; i<n; i++) {
-        printf("%d ", array[i]);
+    int ix;
+    printf("The array is:");
+    for(ix = 0; ix<n; ix++) {
+        printf("%d ", array[ix]);
     }
     return 0;
 }
