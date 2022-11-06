@@ -1,6 +1,8 @@
 # Data Structures
 
-This is my DStruc repo
+This is my DStruc repo.
+
+All of the Assignments are under the Sorting folder
 
 ## Bugs Galore
 
@@ -31,3 +33,5 @@ After this, all of my folders & files were updated to git, other than the Nodes 
 I found that I had accidently created a submodule in git.
 
 Currently working to fix this bug, but a work in progress.
+
+UPDATE: I am ignoring the bug for now, but I am putting the files for LinkedLists under sorting, so the dates are messed up a bit. I am not sure if the correct dates will ever pop up.
