@@ -1,7 +1,8 @@
 #include<stdio.h>
 
 void swap(int* x, int* y);
-void heap(int array[], int n);
+void heapify(int array[], int n);
+void sort(int n, int array[]);
 
 //representing a heap in an array
 //not creating a data structure specifically for heaps, since left & right child can be found by formulas
@@ -14,7 +15,7 @@ void swap(int* x, int* y)
     // swapping places of two different values
 }
 
-void heap(int array[], int n){
+void heapify(int array[], int n){
     int lChild, rChild, p, j, i;
     // first, need to find the index of the element where we start the heap
     //lChild = (2*p) + 1;
@@ -37,18 +38,19 @@ void heap(int array[], int n){
         while(&array[lChild] != NULL ){
             lChild = (2*j) + 1;
             rChild = (2*j) + 2;
-            if (array[j] < array[rChild]){
+            if (&array[j] < &array[rChild]){
                 swap(&array[j], &array[rChild]);
             }
-            if (array[j] < array[lChild]){
+            if (&array[j] < &array[lChild]){
                 swap(&array[j], &array[lChild]);
             }
         }
-
-
     }
 
 //int maxEle(int array[], int n){
+void sort(int n, int array[]){
+    
+}
 
 int main(){
     // taken from prev sorting
@@ -60,7 +62,7 @@ int main(){
     for (i = 0; i < length; i++){
         scanf("%d", &array[i]);
     }
-    heap(array, length);
+    heapify(array, length);
     printf("The array is: ");                   //printing array
     for(i = 0; i<length; i++) {
         printf("%d ", array[i]);
