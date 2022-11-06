@@ -35,7 +35,9 @@ void heapify(int array[], int n){
         j = i;
         lChild = (2*i) + 1;
         }
-        while(&array[lChild] != NULL ){
+        while(&array[lChild] != NULL ){     //checking if root has children
+                                            //EDIT: this step is not necessary, since all the elements p = n/2...
+                                            //.. has a child out of the definition of p = n/2
             lChild = (2*j) + 1;
             rChild = (2*j) + 2;
             if (&array[j] < &array[rChild]){
@@ -43,13 +45,16 @@ void heapify(int array[], int n){
             }
             if (&array[j] < &array[lChild]){
                 swap(&array[j], &array[lChild]);
+            //ERROR: I am not going through the heap properly
+            //In this case, i am still going through the heap without necessity, so need to find a way to go through it
+
             }
         }
     }
 
 //int maxEle(int array[], int n){
 void sort(int n, int array[]){
-    
+
 }
 
 int main(){
