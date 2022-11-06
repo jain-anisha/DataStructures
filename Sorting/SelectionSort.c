@@ -17,9 +17,9 @@ void selectionSort(int n, int array[])
 {
     int j, i, minNum, c;
     for (i = 0; i < n - 1; i++) {
-        minNum = array[i];
-        for (j = i + 1; j < n; j++){
-            if (minNum > array[j]){
+        minNum = array[i];                  //take the first element of the unsorted list to be the minNum
+        for (j = i + 1; j < n; j++){        
+            if (minNum > array[j]){         //
                 minNum = array[j];
                 c++;
             if (c!=0)
