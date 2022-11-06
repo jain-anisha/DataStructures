@@ -1,8 +1,8 @@
 #include<stdio.h>
 
-//void swap(int* x, int* y);
-//void partition(int start, int stop, int array[]);
-//void Qsort(int start, int stop, int array[]);
+void swap(int* x, int* y);
+int partition(int start, int stop, int array[]);
+void Qsort(int start, int stop, int array[]);
 
 void swap(int* x, int* y)
 {
