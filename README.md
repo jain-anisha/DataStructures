@@ -35,3 +35,8 @@ I found that I had accidently created a submodule in git.
 Currently working to fix this bug, but a work in progress.
 
 UPDATE: I am ignoring the bug for now, but I am putting the files for LinkedLists under sorting, so the dates are messed up a bit. I am not sure if the correct dates will ever pop up.
+
+UPDATE: ran the 
+git rm -r --cached . 
+command to update my .gitignore file
+Somehow, the submodule was removed, and it is working again.

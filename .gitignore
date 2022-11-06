@@ -1,2 +1,5 @@
 *.exe
 #ignoring all .exe files when committing
+
+**/Notes
+#ignoring the Notes file
