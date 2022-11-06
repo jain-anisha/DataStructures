@@ -36,7 +36,7 @@ int main()
     scanf("%d", &input);
     d -> val = input;
 
-    struct Node* head = a;
+    struct Node* head = a;                  //linking the list together
     a -> next = b;
     b -> next = c;
     c -> next = d; 
@@ -56,4 +56,7 @@ int main()
     return 0;
 
 }
-//This was a very bad first attempt at writing a linked list. Have an understanding of it. but is still confused on writing it
+
+
+// Is it possible to write a linkedlist with a variable number of elements?
+
