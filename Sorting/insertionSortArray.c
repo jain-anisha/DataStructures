@@ -15,25 +15,21 @@ int insertsort(int array[], int n){
     // n = number of elements in array
     // point = point of comparsion
     // INV: i <= n; j <= n; point <= n
-    if(!array || n <= 1){
-        return;
+    if(!array || n < 2){
+        printf("Invalid input.");
+        return -1;
         }                        //checking for valid input 
-    i, point = 0;
-    j = 1;
+    for(i = 1; i < n; i++){
 
-    while(i <= n){
-        if(array[i] <= array[j]){
-            j++;
-            i++;
+            j = i - 1;
+            point = array[i];
+            while(point <= array[j] && j >= 0){ 
+                //swap(&array[point], &array[j]);
+                // printf("%d;;%d", point1, point2);
+                array[j + 1] = array[j];
+                j--;
         }
-        else{
-            swap(&array[i], &array[j]);
-            point++;
-            if(array[point] > array[j]){
-                swap(&array[point], &array[j]);
-            }
-
-        }
+        array[j + 1] = point;
     }
 }
 // implemented sort with the wrong type of loop, so essentially need to keep in mind the loops for...
