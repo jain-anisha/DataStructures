@@ -21,7 +21,7 @@ int main(void)
 int my_array[] = {1,23,17,4,-5,100};
 int *ptrtwo;
 
-int mai(void) 
+int main(void) 
 {
     int i;     
     ptrtwo = &my_array[0];     /* point our pointer to the first                                       
