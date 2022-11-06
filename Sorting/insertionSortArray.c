@@ -1,5 +1,9 @@
 #include<stdio.h>
 
+void swap(int* x, int* y);
+void insertsort(int array[], int n);
+int main();
+
 void swap(int* x, int* y)
 {
     int temp = *x;
@@ -8,7 +12,7 @@ void swap(int* x, int* y)
     // swapping places of two different values
 }
 
-int insertsort(int array[], int n){
+void insertsort(int array[], int n){
     int i, j, point;
     // i = index
     // j = place of last sorted element
@@ -17,36 +21,31 @@ int insertsort(int array[], int n){
     // INV: i <= n; j <= n; point <= n
     if(!array || n < 2){
         printf("Invalid input.");
-        return -1;
+        return;
         }                        //checking for valid input 
     for(i = 1; i < n; i++){
 
-            j = i - 1;
-            point = array[i];
-            while(point <= array[j] && j >= 0){ 
-                //swap(&array[point], &array[j]);
-                // printf("%d;;%d", point1, point2);
-                array[j + 1] = array[j];
-                j--;
+            j = i - 1;          //making this the start of the sorted list
+            while(array[j] > array[j+1] && j >= 0){ 
+                swap(&array[j+1], &array[j]);       //swap func
+                j--;                                // decreases by one, in order continue to compare the values so 
+                                                    // the current val at array[j+1] is put at the right location
         }
-        array[j + 1] = point;
     }
 }
-// implemented sort with the wrong type of loop, so essentially need to keep in mind the loops for...
-// the next time around
 
 int main()
 {
     int length;
     printf("Enter number of elements in your list:");
     scanf("%d", &length);
-    int array[length], i;                       // array w/ n # of elements   
+    int array[length], i;                       // array w/ n # of elements 
     printf("Enter the %d elements to be sorted.\n", length);
     for (i = 0; i < length; i++){
         scanf("%d", &array[i]);
     }
     insertsort(array, length);
-    printf("The array is:");            //printing array
+    printf("The array is: ");            //printing array
     for(i = 0; i<length; i++) {
         printf("%d ", array[i]);
     }
