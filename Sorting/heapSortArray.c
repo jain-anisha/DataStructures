@@ -43,14 +43,14 @@ void sort(int n, int array[]){
     //input: max heap
     //INV: i < n 
     //EXIT: when i = n
-    int i = 0;
-    for(i; i<n; i++){
-        heapify(array, n, n/2 - 1);
+    int i = n/2 -1;
+    for(i; i > 0; i--){
+        heapify(array, n, i);             //ERROR: have the wrong intialization... heapify must start at n/2 - 1
     }
 
-    for(i = n - 1; i<= n; i++){
-        swap(&array[n], &array[0]);
-        heapify(array, n, n/2);
+    for(i = n - 1; i >= 0; i--){
+        swap(&array[i], &array[0]);
+        heapify(array, n, ((i)/2) -1);
     }
 
 }
