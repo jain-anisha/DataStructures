@@ -1,5 +1,11 @@
 #include<stdio.h>
 
+void heapify(int array[], int n, int start);
+void swap(int* x, int* y);
+
+//CURRENT ERROR: The min heap code works. Having an issue with swapping the values of the elements, and then heapifying
+// the array again.
+
 void swap(int* x, int* y)
 {
     int temp = *x;
@@ -8,46 +14,48 @@ void swap(int* x, int* y)
     // swapping places of two different values
 }
 
-void heapify(int array[], int n){
-    int lChild, rChild, p, j, i;
-    //taken from the heapSortArray.c code
+int extractMin(int array[], int n){
+    //input: an array
+    int start = (n/2);
 
-    // first, need to find the index of the element where we start the heap
-    //lChild = (2*p) + 1;
-    //rChild = (2*p) + 2;
-    //ABOVE WRITTEN FOR NOTES
+    for(start; start >= 0; start--){ //makes min heap
+        heapify(array, n, start);
+    }                    
+    //ERROR: specifically, the error is somewhere in here
+    printf("min ele: %d", &array[0]);  
+    printf("max ele: %d", &array[n-1]);    
+    swap(&array[0], &array[n-1]);                   //putting the min element at the end of the list
+    
 
-    //need to traverse the list
-    /*Intializations: 
-    i = counter
-    lChild, rChild: left and right child
-    need to have it so that i is greater than lChild and rChild
-    EXIT CONDITION: when i = 0, we stop
-    INV: i <= p; i > 0 
-    */
-    p = n/2;                                // starting at the first elements in the second to last row
-    for(i = p; i = 0; i--){
-        j = i;
-        lChild = (2*i) + 1;
+    start = (n/2);
+    for(start; start >= 0; start--){ //makes min heap
+        heapify(array, n, start);
+    }                                               //heapifying again
+
+    return 0;
+}
+
+void heapify(int array[], int n, int start){
+    int lChild, rChild, smallest;
+    lChild = (2*start) + 1;                     //calculating the left & right child
+    rChild = (2*start) + 2;
+    smallest = start;                           //intializating the greatest element at the start element
+
+    if(lChild < n){
+        if(array[lChild] < array[smallest]){
+            smallest = lChild;                  // storing the index point of the larger element btwn lChild and the root
         }
-        while(n <= lChild ){
-            lChild = (2*j) + 1;
-            rChild = (2*j) + 2;
-            if (&array[j] > &array[rChild]){
-                swap(&array[j], &array[rChild]);
-            }
-            if (&array[j] > &array[lChild]){
-                swap(&array[j], &array[lChild]);
-            }
+        if(array[rChild] < array[smallest]){
+            smallest = rChild;                  //storing the index point of the larger element btwn the prev largest...
+        }                                       //... element, and rChild
+        //now we have three cases of the largest element: the original, lChild, and rChild. We will need to swap in all...
+        //cases other than if the largest element found is the same as the original root. SO:
+        if (smallest != start){
+            swap(&array[smallest], &array[start]);
+            //Now, we need to heapify the rest of the elements under the root
+            heapify(array, n, smallest);
         }
     }
-
-int extractMin(int array[], n){
-    //input: min Heap
-    int minEle = array[0]
-    swap(&array[0], &array[n-1]);
-    
-    return minEle;
 }
 
 int main()
@@ -60,11 +68,12 @@ int main()
     for (i = 0; i < length; i++){
         scanf("%d", &array[i]);
     }
-    makeHeap(array, length);
+    int min = extractMin(array, length);
     //insertsort(array, length);
     printf("The array is: ");            //printing array
     for(i = 0; i<length; i++) {
         printf("%d ", array[i]);
     }
+    printf("The smallest element in the list is: %d", min);
     return 0;
 }
