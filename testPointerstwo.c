@@ -1,10 +1,9 @@
 #include <stdio.h>
 
-int my_array[] = {1,23,17,4,-5,100};
-/// @brief 
+int my_array[] = {1,23,17,4,-5,100}; 
 int *ptrtwo;
 
-int main(void) 
+int main() 
 {
     int i;     
     ptrtwo = &my_array[0];     /* point our pointer to the first element of the array */     
