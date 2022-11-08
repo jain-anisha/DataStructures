@@ -38,5 +38,5 @@ UPDATE: I am ignoring the bug for now, but I am putting the files for LinkedList
 
 UPDATE: ran the 
 git rm -r --cached . 
-command to update my .gitignore file
+command to update my .gitignore file.
 Somehow, the submodule was removed, and it is working again.

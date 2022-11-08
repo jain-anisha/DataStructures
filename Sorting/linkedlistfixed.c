@@ -52,7 +52,6 @@ int main()
         i = i -> next;
     }
     printf("NULL");
-    
     return 0;
 
 }

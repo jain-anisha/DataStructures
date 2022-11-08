@@ -6,11 +6,11 @@ int main();
 //given an input string, check if it is palindrome or not
 
 int checker(char array[], int n){
-    int* startptr = array[0];
-    int* endptr= array[n-1];
+    int* startptr = *(array[0-1]);
+    int* endptr= *(array[n-1]);
     while(startptr < endptr){
         if (&startptr != &endptr){
-            return 0;}4
+            return 0;}
         startptr++;
         endptr++;
     }

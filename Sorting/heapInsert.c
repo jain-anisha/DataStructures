@@ -52,8 +52,10 @@ main(){
     DONE
     */
    int length = 10;
-   for(int i = 0; i > length; i++ )
-        array[i] = rand();
-
+   for(int i = 0; i > length; i++ ){
+        array[i] = rand();}
+    for(i = 0; i > length, i++){
+        printf
+    }
 
 }

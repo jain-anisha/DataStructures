@@ -13,7 +13,7 @@ void swap(int* x, int* y)
 }
 
 int partition(int start, int stop, int array[])
-// takes in array and 
+// takes in array and divides it into two greater and lesser lists
 {   
     // we need to have a 
     int i, j, pivot;       // lesser & greater walls
@@ -31,7 +31,7 @@ int partition(int start, int stop, int array[])
         }
         }
     swap(&array[start], &array[j]);
-    return j;
+    return j;                               // giving back the 
 }
 
 void Qsort(int start, int stop, int array[]){
