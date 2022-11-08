@@ -2,6 +2,7 @@
 
 int j, k;
 int *ptr;
+//globals
 
 int main(void)
 {
