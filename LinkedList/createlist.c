@@ -29,14 +29,14 @@ void linklist(int n){
     scanf("%d", &val);
     head -> next = NULL;                // the next pointer points to a null val
     head -> val = val;                  // the val in the node is the val inputed into function
-    temp = head;
+    temp = head;                        // special condition for the first node, since we need to connect the head
 
     //now, need to link the other values
     // to do this, we will use a for loop
-    // 2 <= i < n : INV
+    // 1 <= i < n : INV
     for(int i = 1; i < n; i++){
         new = (struct node *)malloc(sizeof(struct node));
-            
+            // same the the previous print statement, no difference
             scanf("%d", &val);
             new -> next = NULL;     // the next ptr of the new node is NULL
             new -> val = val;       // the value of val in the new node is the inputted val
@@ -53,7 +53,7 @@ int main()
     printf("Enter number of nodes: ");
     scanf("%d", &num);
     linklist(num);
-
+    // how do we print a list?? no clue if code is correct as of now
 }
 
 
