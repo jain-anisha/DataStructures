@@ -1,3 +1,6 @@
+#include<stdio.h>
+#include<stdlib.h>
+
 /* Reversing a Linked List, given a linked list.
 
 First, making a linked list, based on the code from the linked list
@@ -9,11 +12,14 @@ struct node{
     struct node *next;          // creating the node
 };
 
-void revList(struct node* header){
+struct node *head = NULL;       //making the head node as a global
+
+
+int revList(struct node* header){
     //essentially, when we are given the head node, we switch the head node
     // we make the head node point to NULL, while having another pointer point to another
     if(!header){
-        return;}        //if head does not exist, there's no linked list
+        return NULL;}        //if head does not exist, there's no linked list
     /* We need 3 pointers: one to point at the current node, one to point at prev node, and one to point at next node
     while the current node is NOT pointing to a NULL val (AKA is not the last val in the list), store the next ptr
     as the current pointing to the next val, 
@@ -39,6 +45,7 @@ void revList(struct node* header){
         curr = next;
     }
     header = prev;
+    return header;
 }
 
 struct node * linklist(int n){
@@ -52,7 +59,7 @@ struct node * linklist(int n){
     head = (struct node *)malloc(sizeof(struct node));      //making the head node
 
     if(n <= 0 || head == 0){
-        return;
+        return head;
     }
 
     //head is the start of the linked list, that holds no value
@@ -98,7 +105,7 @@ int main()
     scanf("%d", &num);
     struct node *head = linklist(num);
     // how do we print a list?? no clue if code is correct as of now
-    revList(head);
-    Listprint(head);    
+    struct node * s = revList(head);
+    Listprint(s);    
     return 0;
 }
