@@ -13,7 +13,7 @@ struct node *head = NULL;       //making the head node as a global
 
 void linklist(int n){
     int val;
-    struct node *temp;
+    struct node *temp;                  // points to the 
     struct node *new;
 
     head = (struct node *)malloc(sizeof(struct node));      //making the head node
