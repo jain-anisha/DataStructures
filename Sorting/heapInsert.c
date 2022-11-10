@@ -2,8 +2,7 @@
 #include<stdlib.h>
 
 void swap(int* x, int* y)
-{
-    int temp = *x;
+{   int temp = *x;
     *x = *y;
     *y = temp;
 }
@@ -33,14 +32,19 @@ void heapify(int array[], int n, int start){
     }
 }
 
+
+void insert(){
+    //inserting an element by 
+}
+
 main(){
     // in this, we have made it so our array is a bunch of random elements, and we add one element into our array
     // since arrays are static, we will need to make another array:
-
     //total integers = 10 (rep by length)
+
     /*
-    need 9 random integers
-    put into array
+    need integers to put into array
+        this code taken from what we have already done with the previous array
     then heapify it, so that it is a min heap 
     print the array 
     now, have the user input the value of the element to be inserted.
@@ -51,11 +55,14 @@ main(){
     print out the new array
     DONE
     */
-   int length = 10;
-   for(int i = 0; i > length; i++ ){
-        array[i] = rand();}
-    for(i = 0; i > length, i++){
-        printf
+    int length;
+    printf("Enter number of elements in your list:");
+    scanf("%d", &length);
+    int array[length], i;                       // array w/ n # of elements 
+    printf("Enter the %d elements to be sorted.\n", length);
+    for (i = 0; i < length; i++){
+        scanf("%d", &array[i]);
     }
+    insert(array, length, )
 
 }
