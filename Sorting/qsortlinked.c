@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<assert.h>
 
 struct node
 {   int val;
@@ -16,7 +17,7 @@ void swap(struct node * y, struct node *z){
     z -> val = temp;
 }
 
-void linklist(int n){
+struct node * linklist(int n){
     //TAKEN FROM LINKED LIST
     int val;
     struct node *temp;
@@ -49,20 +50,32 @@ void linklist(int n){
             temp -> next = new;     //
             temp = temp -> next;
     }
+    return head;
 }
 
 //in quick sort with linked lists, we will use the last value of the linked list as our pivot element:
 
-struct node* last(struct node *head){
+struct node * findlast(struct node *head){
     //TRAVERSING THE LIST to find the last node
     if (head == NULL){
         return;             //linked list is not a list
     }
-
-
+    //need to traverse the list, until the next element has NULL as the next address that it is pointing to 
+    struct node *temp = head;       //temp var that will traverse list, starts at first element
+    int i = 0;                      //index: counts num of loops
+    while(temp-> next != NULL){
+        temp = temp -> next;
+        //now, temp must be: temp = temp -> next = NULL
+    }
+    assert(temp -> next == NULL);
+    struct node *last = temp;
+    //creating node to store the last element of the list
+    return last;
 }
 
-void partition(struct node *first, struct node* last, size){
+void partition(struct node *first, struct node* last){
+    // creating a partiton of greater and lesser values
+    // the greater 
     //the pivot element, aka the last in the list
     // need a pointer for the greatest wall, and a pointer for the lesser wall, and the 
     // need a pointer for the current element as well.
@@ -72,25 +85,37 @@ void partition(struct node *first, struct node* last, size){
     pivot = last;
     //need a loop to go through entire list
     int i;
+    for(i = 0; i < )
     // exit cond: when curr -> next -> next does not exist?
     
     
 }
 
-void qsort(struct node* start, struct node* stop, size){
-    if (last == NULL || start == NULL || start->val > stop->val){
+void qsort(struct node* start, struct node* stop){
+    if ( start == NULL || start->val > stop->val){
         return;
     }
 
-    struct node* wall = partition(struct node * first, struct node * last);
+    struct node* wall = partition(*start, *stop);
 
-    qsort(start, wall - 1, size);          // less list
-    qsort(wall + 1, stop, size);           // greater list
+    qsort(start, wall - 1);          // less list
+    qsort(wall + 1, stop);           // greater list
 }
 
 void printL(){
-    // printing the linked list
-    while()
+{
+    struct node * temp = head;
+    // starting the temp value to the node of the head val
+    while(temp->next != NULL)
+    //will continue this loop until the last node
+    {
+        printf("%d\n", temp->val);
+        temp = temp->next;
+    }
+    printf("%d\n", temp->val);
+    // specifically printing out the last node
+}
+
 }
 
 int main()
@@ -98,5 +123,7 @@ int main()
     int num; 
     printf("Enter number of nodes: ");
     scanf("%d", &num);
-    linklist(num);
+    struct node * header = linklist(num);
+    struct node * ender = findlast(header);
+    qsort(header, ender);
 }
