@@ -17,21 +17,23 @@ void swap(int* x, int* y)
 int extractMin(int array[], int n){
     //input: an array
     int start = (n/2);
+    printf("%d", array[n-1]);
 
     for(start; start >= 0; start--){ //makes min heap
         heapify(array, n, start);
     }                    
     //ERROR: specifically, the error is somewhere in here
-    printf("min ele: %d", &array[0]);  
-    printf("max ele: %d", &array[n-1]);    
+    printf("min ele: %d\n", array[0]);  
+    printf("last ele: %d\n", array[n-1]);   
+    int x, y; 
+    printf("%d", array[n-1]);
     swap(&array[0], &array[n-1]);                   //putting the min element at the end of the list
-    
+    printf("  %d  ", array[n-1]);
 
     start = (n/2);
     for(start; start >= 0; start--){ //makes min heap
-        heapify(array, n, start);
+        heapify(array, n-1, start);
     }                                               //heapifying again
-
     return 0;
 }
 
@@ -64,16 +66,20 @@ int main()
     printf("Enter number of elements in your list:");
     scanf("%d", &length);
     int array[length], i;                       // array w/ n # of elements 
+
     printf("Enter the %d elements to be sorted.\n", length);
     for (i = 0; i < length; i++){
         scanf("%d", &array[i]);
     }
     int min = extractMin(array, length);
-    //insertsort(array, length);
+
     printf("The array is: ");            //printing array
-    for(i = 0; i<length; i++) {
+    for(i = 0; i<length-1; i++) {
         printf("%d ", array[i]);
     }
-    printf("The smallest element in the list is: %d", min);
+    //printf("The smallest element in the list is: %d", min);
     return 0;
 }
+
+//tried something with debugging the values, did not work
+// next time, will try the assert method talked about in class
