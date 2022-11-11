@@ -44,15 +44,33 @@ void sort(int n, int array[]){
     //INV: i < n 
     //EXIT: when i = n
     int i = n/2 - 1;
-    for(i; i > 0; i--){
+    int oo;
+
+    for(i; i >= 0; i--){                        //working fine
         heapify(array, n, i);           
     }
 
-    for(i = n - 1; i >= 0; i--){
-        swap(&array[i], &array[0]);
-        heapify(array, n, ((i)/2) -1);          //something wrong here, not sure what it is
-    }
+    for(oo = 0; oo<n; oo++) {
+            printf("%d ,", array[oo]);
+        }
+    int len = n - 1;
+    //swap(&array[i], &array[0]);
+    //using the smallest element (AKA the current max element )
 
+
+    for(len; len > 0; len--){
+        printf("xx %d, %d 1 \n", array[len], array[0]);
+        swap(&array[len], &array[0]);
+        for(oo = 0; oo<n; oo++) {
+            printf("%d ", array[oo]);
+        }
+        printf("xx %d, %d x \n", array[len], array[0]);
+        heapify(array, len, (len/2) -1);          //something wrong here, not sure what it is
+        
+        for(oo = 0; oo<n; oo++) {
+            printf("%d ", array[oo]);
+        }
+    }
 }
 
 int main(){
