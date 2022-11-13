@@ -14,11 +14,60 @@ struct node{
 
 struct node *head = NULL;       //making the head node as a global
 
-void revList(){
+void linklist(int n);
+struct node * revList();
+
+void linklist(int n){
+    //taken from create linked list code
+    int value;
+    struct node *temp;
+    // the code from the last push was seg faulting, and I did not understand why it was seg faulthin
+
+    head = (struct node *)malloc(sizeof(struct node));      //making the head node
+
+    if(n <= 1 || head == 0){
+        printf("invalid inputs");
+        return;
+    }
+
+    //head is the start of the linked list, that holds no value
+
+    //now, writing the first node
+    printf("Enter the values of %d nodes:\n", n);
+    scanf("%d", &value);
+
+    head -> val = value;
+    head -> next = NULL;
+
+    temp = head;    
+
+    //now, need to link the other values
+    // to do this, we will use a for loop
+    // 1 <= i < n : INV
+    for(int i = 2; i <= n; i++){
+        
+        struct node * newnode = (struct node *)malloc(sizeof(struct node));
+            scanf("%d", &value);
+        newnode->val = value;
+        newnode->next = NULL;
+        temp -> next = newnode;
+        temp = temp->next;
+    }
+    return;
+}
+
+void Listprint(struct node * z){
+    struct node* i = z;
+    while (i != NULL) {
+        printf("%d ", i->val);
+        i = i->next;
+    }
+}
+
+struct node * revList(){
     //essentially, when we are given the head node, we switch the head node
     // we make the head node point to NULL, while having another pointer point to another
-    //if(!head){
-      //  return;}        //if head does not exist, there's no linked list
+
     /* We need 3 pointers: one to point at the current node, one to point at prev node, and one to point at next node
     while the current node is NOT pointing to a NULL val (AKA is not the last val in the list), store the next ptr
     as the current pointing to the next val, 
@@ -32,97 +81,53 @@ void revList(){
     we put the head ptr to the last prev val, and we have finished
 
     */
-    struct node* prev = NULL ;
-    struct node* next = NULL;
+    struct node* prevr, *currr ;
 
-    struct node * temp = (struct node *)malloc(sizeof(struct node));
+    struct node * tempr = (struct node *)malloc(sizeof(struct node));
 
-    temp = head;
-    struct node* curr = temp;
+    tempr = head;
+    // creating new head node
 
 
     //first need to change the head
 
-    prev = temp;
+    prevr = tempr;
+    //pointing the prev node to the head node
 
-    curr = temp -> next;
+    currr = tempr -> next;
+    //curr node points to the node after head
 
-    temp = temp -> next;
+    tempr = tempr -> next;
+    //temp node points to the next node
 
-    prev -> next = NULL;
+    prevr -> next = NULL;
+    //now, the prev node has no next node, since the direction of the head {AKA the tempr} has been switched to 
+    //...the other direction
 
-    while(head != NULL){
-        temp = temp -> next;
-        curr -> next = prev;
+    while(tempr != NULL){               //as long as there is a node 
+        tempr = tempr -> next;          // head now points to the next val
+        currr -> next = prevr;          // the prev now points to the same thing curr-> next is pointing to  
 
-        prev = curr;
-        curr = temp;
+        prevr = currr;                 
+        currr = tempr;
     }
-    head = prev;
-    return;
+    return prevr;   // this is where the new head of the list is
 }
 
-void linklist(int n){
-    //taken from create linked list code
-    int value;
-    //struct node *temp;                  // points to the 
-    struct node *new;
-    //struct node *head = NULL;       //making the head node as a global
-
-
-    head = (struct node *)malloc(sizeof(struct node));      //making the head node
-
-    if(n <= 0 || head == 0){
-        return;
-    }
-
-    //head is the start of the linked list, that holds no value
-
-    //now, writing the first node
-    printf("Enter the values of %d nodes:\n", n);
-
-    //now, need to link the other values
-    // to do this, we will use a for loop
-    // 1 <= i < n : INV
-    for(int i = 0; i < n; i++){
-        struct node * temp = head;
-        struct node *newnode = (struct node *)malloc(sizeof(struct node));
-            scanf("%d", &value);
-        newnode->val = value;
-        newnode->next = NULL;
-        if(head==NULL){
-            head = newnode;
-        }
-        else{
-            while(temp -> next != NULL){
-                temp = temp->next;
-            }  
-        } //
-            temp -> next = newnode;
-    }
-    return;
-}
-
-void Listprint(struct node* head){
-    struct node* i = head;
-    while (i != NULL) {
-        printf("%d ", i->val);
-        i = i->next;
-    }
-}
-
-// linked list with four elements
-
-int main()
+void main()
 {
     int num; 
+    struct node * f;
 
     printf("Enter number of nodes: ");
     scanf("%d", &num);
+    if(num <= 1){
+        printf("invalid input");
+        return;
+    }
     linklist(num);
-    Listprint(head); 
-    // how do we print a list?? no clue if code is correct as of now
-    revList();
-    Listprint(head);    
-    return 0;
+    
+    f = revList();
+    Listprint(f);    
+    return;
 }
