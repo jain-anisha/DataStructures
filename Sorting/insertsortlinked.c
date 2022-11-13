@@ -2,8 +2,7 @@
 #include<stdlib.h>
 
 struct node
-{
-    int val;
+{   int val;
     struct node* next;
 };
 
@@ -14,52 +13,98 @@ void swap(struct node * y, struct node *z){
 }
 
 struct node * head = NULL; 
-
+struct node * sorted = NULL;
+// creating globals for the head and the sorted nodes
+// head stores head of the linked list
+// sorted points to the last term of the sorted part of the list
 
 void linklist(int n){
-    int val;
+    //taken from create linked list code
+    int value;
     struct node *temp;
-    struct node *new;
+    // the code from the last push was seg faulting, and I did not understand why it was seg faulthin
 
-    struct node * head = (struct node *)malloc(sizeof(struct node));      //making the head node
+    head = (struct node *)malloc(sizeof(struct node));      //making the head node
 
-    if(n <= 0 || head == 0){
-        return; }
+    if(n <= 1 || head == 0){
+        printf("invalid inputs");
+        return;
+    }
 
     //head is the start of the linked list, that holds no value
 
     //now, writing the first node
     printf("Enter the values of %d nodes:\n", n);
-    scanf("%d", &val);
-    head -> next = NULL;                // the next pointer points to a null val
-    head -> val = val;                  // the val in the node is the val inputed into function
-    temp = head;                        // special condition for the first node, since we need to connect the head
+    scanf("%d", &value);
+
+    head -> val = value;
+    head -> next = NULL;
+
+    temp = head;    
 
     //now, need to link the other values
     // to do this, we will use a for loop
     // 1 <= i < n : INV
-    for(int i = 1; i < n; i++){
-        new = (struct node *)malloc(sizeof(struct node));
-            // same the the previous print statement, no difference
-            scanf("%d", &val);
-            new -> next = NULL;     // the next ptr of the new node is NULL
-            new -> val = val;       // the value of val in the new node is the inputted val
-
-            temp -> next = new;     //
-            temp = temp -> next;
+    for(int i = 2; i <= n; i++){
+        
+        struct node * newnode = (struct node *)malloc(sizeof(struct node));
+            scanf("%d", &value);
+        newnode->val = value;
+        newnode->next = NULL;
+        temp -> next = newnode;
+        temp = temp->next;
     }
+    return;
 }
 
 
 int sort(){
+    /*compare 1st element to the next element..
+    if the val of the first element is greater than the value of the next element, switch the values
+    then, go to the next element in the unsorted list, compare
+        if curr > next: switch vals 
+        then, compare the last (already sorted) element in the list
+    do the same until you sort all the elements
 
+    NOTE; in the linked lists, we only switch the vals of the lnked list, the memory addresses stays the same. 
+
+    IF the head does not exist, or the next -> next val of the head is NULL, then the linked list is doesnt exist, 
+    or it os sorted
+    */
+   struct node * curr = head;
+   struct node * next;
+   // intializing the first node to be pointing to the head node
+    while (curr != NULL){
+        //this will go through every node, incrementing by one everytime
+
+        next = curr -> next;
+        //making a node that points to the next element of the list
+
+        insert(curr);
+        //essentially, this will make sure that rest of the partly sorted list will insert the next at the right place
+
+        curr = next;
+        // making sure that in the next loop, the curr points to the next value
+    }
 }
 
-main(){
+void insert(struct node *new){
+    /*
+    two cases: 
+    - 1: new is the head
+    - 2: new is not the head
+
+    when new is the head,  
+    */
+}
+
+void main(){
     int num; 
     printf("Enter number of nodes: ");
     scanf("%d", &num);
     linklist(num);
 
-    sort()
+    sort();
+
+    //print sorted linked list
 }
