@@ -62,7 +62,7 @@ void Listprint(int n){
     struct node * hare = head;                  // will jump forward two
 
     //have two cases: odd and even number of elements
-    // have this, because without it, the code was seg faulting while checking the exit condition
+    // have this, because without it, the code was seg faulting while checking the exit
 
     if (n % 2 == 0){
         while(hare != NULL){
