@@ -46,13 +46,26 @@ void linklist(int n){
     }
 }
 
+void Listprint(struct node * z){
+    struct node* i = z;
+    while (i != NULL) {
+        printf("%d ", i->val);
+        i = i->next;
+    }
+}
+
 int main()
 {
     int num; 
 
     printf("Enter number of nodes: ");
     scanf("%d", &num);
+    if (num <=1){
+        printf("invalid input");
+        return 0;
+    }
     linklist(num);
+    Listprint(head);
     // how do we print a list?? no clue if code is correct as of now
 }
 
