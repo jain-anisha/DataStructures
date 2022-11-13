@@ -52,7 +52,7 @@ void linklist(int n){
     }
 }
 
-void Listprint(){
+void Listprint(int n){
     // modified for hare & tortice method
 
     //basically, to print one value of the linked list, we first must check if the next -> next pointer
@@ -61,16 +61,33 @@ void Listprint(){
     struct node * tortoise = head;              // will jump forward one
     struct node * hare = head;                  // will jump forward two
 
-    while(hare != NULL){
-        //as long as the hare exists, we will print the tortoise value
-        printf("%d ", tortoise->val);
+    //have two cases: odd and even number of elements
+    // have this, because without it, the code was seg faulting while checking the exit condition
 
-        tortoise = tortoise -> next;
+    if (n % 2 == 0){
+        while(hare != NULL){
+        //as long as the hare exists, we will print the tortoise value
+            printf("%d ", tortoise->val);
+
+            tortoise = tortoise -> next;
         // tortoise jumps forward one node
-        hare = hare -> next -> next;
+            hare = hare -> next -> next;
         // hare jumps forward two
+    }  
     }
 
+    if (n % 2 == 1){
+        while(hare -> next!= NULL){
+        // in the case of an odd number of elements, we will not print out the middle element
+        //as long as the hare exists, we will print the tortoise value
+            printf("%d ", tortoise->val);
+
+            tortoise = tortoise -> next;
+        // tortoise jumps forward one node
+            hare = hare -> next -> next;
+        // hare jumps forward two
+    }
+    }
 }
 
 int main()
@@ -84,5 +101,5 @@ int main()
         return 0;
     }
     linklist(num);
-    Listprint();
+    Listprint(num);
 }
