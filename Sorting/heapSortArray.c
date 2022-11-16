@@ -50,26 +50,19 @@ void sort(int n, int array[]){
         heapify(array, n, i);           
     }
 
-    for(oo = 0; oo<n; oo++) {
-            printf("%d ,", array[oo]);
-        }
-    int len = n - 1;
+
     //swap(&array[i], &array[0]);
     //using the smallest element (AKA the current max element )
 
+    //last part is taken from what I did for the exam 
 
-    for(len; len > 0; len--){
-        printf("xx %d, %d 1 \n", array[len], array[0]);
-        swap(&array[len], &array[0]);
-        for(oo = 0; oo<n; oo++) {
-            printf("%d ", array[oo]);
-        }
-        printf("xx %d, %d x \n", array[len], array[0]);
-        heapify(array, len, (len/2) -1);          //something wrong here, not sure what it is
-        
-        for(oo = 0; oo<n; oo++) {
-            printf("%d ", array[oo]);
-        }
+    //my error was that I was writing len > 0 instead of len >= 0, so it was leaving out one last heapify thing
+    for(int len = n - 1; len >= 0; len--){                 // calling heapify, and making the array that it looks at smaller
+                                                           //... by one each time so it can slowly sort the list    
+        swap(&array[0], &array[len]);                      //putting the min element at the end of the list 
+
+        //printf("xx %d, %d x \n", array[len], array[0]);
+        heapify(array, len, 0);          //calling heapify, so it leaves out the last, then last 2, etc till all's sorted
     }
 }
 
@@ -90,5 +83,3 @@ int main(){
     }
     return 0;
 }
-
-// Seg fault...
