@@ -78,46 +78,73 @@ struct node * partition(struct node *first, struct node* pivot){
 
     comparing the pivot by the value of the current node
     two cases:
-        if greater, swap curr-> next with 
+        if greater, greater -> next = curr
+            prevgreat = prevgreat -> next
+            greater = greater -> next
+        if less, less -> next = curr
+            less = less -> next
+    ^** As long as curr -> next != pivot
+
+    when curr -> next = pivot, need to do end condition
+
+    to place pivot at the right place, we have that:
+        less -> next = pivot
+        pivot -> next = firstgreat
     */
 
 
     // need a pointer for the greatest wall, and a pointer for the lesser wall, and the current element
     // less points second to last element
     // need a pointer for the current element as well.
-    struct node *greater,  *less, *curr, *prevgreat = first;
-    struct node *next;
+    struct node *greater, *less, *curr, *prevgreat, *firstgreat, *firstless;
+    int igreat, iless = 0;          //to take how many times we have jumped forward
 
-    /* to find second to last element to point to, will traverse the list 
-    as long as the next element does not equal pivot, we go to the next element
-    */
-    while(greater->next -> next != pivot){
-        greater = greater -> next;
+    //special case for the head:
+
+    while(curr -> next != pivot){
+        if (curr -> val > pivot -> val){
+            if(igreat < 1){
+                firstgreat = curr;
+                greater = curr;}
+            else{
+            greater -> next = curr;
+            prevgreat -> next = greater;
+            prevgreat = prevgreat -> next;
+            greater = greater -> next;
+            }
+            igreat++;
+        }
+        else{
+            if (iless < 1){
+                firstless = curr;
+                less = curr;
+            }
+            else{
+            less -> next = curr;
+            less = less -> next;
+            }
+        }
+        curr = curr -> next;
     }
 
-    prevgreat = greater -> next; 
-    assert(greater -> next -> next = pivot);
+    //to connect both lists
 
-    curr = curr -> next;
-
-    //need a loop to go through entire list,
-        //exit condition: when the next element in the list is the 
-    while(curr -> next != greater){
-        if (curr -> val > pivot -> val){
-            swap(curr, greater);
-            greater = 
-        }    
-    // exit cond: when curr -> next -> next does not exist?
-    
+    less -> next = pivot;
+    first = firstless;
+    pivot -> next = firstgreat;
     
 }
 
-void qsort(struct node* start, struct node* stop){
-    if ( start == NULL || stop == NULL){
-        return;
+struct node * qsort(struct node* start, struct node* stop){
+    if ( start == NULL || stop == NULL  || start == stop){
+        return start;
     }
 
     struct node* wall = partition(start, stop);
+
+    if (wall==NULL ){
+        return start;
+    }
 
     qsort(start, wall - 1);          // less list
     qsort(wall + 1, stop);           // greater list
