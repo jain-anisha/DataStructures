@@ -105,5 +105,4 @@ void main(){
     linklist(num);
     struct node * out = selsort();
     Listprint(out);
-    // how do we print a list?? no clue if code is correct as of now
 }
