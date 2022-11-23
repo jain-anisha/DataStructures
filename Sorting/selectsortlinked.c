@@ -61,11 +61,11 @@ void Listprint(struct node * i){
 // Linked Lists do not allow random access, so we must traverse the list to get each element
 // ... each time
 
-void selsort(){
+struct node * selsort(){
 // selection sort works by chosing the smallest value, placing it at the front of the list, and then decrementing the
 /*... size of the list by one
 
-so, in a linked list, we will not be swapping the nodes of the list, just the values
+so, in a linked list, we will be swapping the ptrs of the list
 in order to do this, we will need to have a pointer to save the end of the sorted array
     - intialized as the head node
 
@@ -73,14 +73,23 @@ another pointer that traverses the entire list
     - intialized as head -> next
 
 a variable that saves the current smallest value
-    - intialized as value of head -> next
+    - intialized as value of head
 
 we have a base case where 
 */
-struct node * sortend = head;
-struct node * jump = head -> next; 
+struct node *out = head;
+struct node * curr = head -> next; 
 
-
+while(curr != NULL){
+    if (out -> val > curr -> val){
+        int x = out -> val;
+        out -> val = curr -> val;
+        curr -> val = x;
+    }
+    out = out -> next;
+    curr = curr -> next;
+}
+return head;
 }
 
 
@@ -94,6 +103,7 @@ void main(){
         return 0;
     }
     linklist(num);
-    Listprint(head);
+    struct node * out = selsort();
+    Listprint(out);
     // how do we print a list?? no clue if code is correct as of now
 }
