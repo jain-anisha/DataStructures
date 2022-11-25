@@ -28,7 +28,7 @@ int partition(int start, int stop, int array[])
             j--;
         }
         else {
-            i++;
+            i++;    
         }
         }
     swap(&array[start], &array[j]);
