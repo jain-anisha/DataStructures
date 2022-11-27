@@ -65,7 +65,6 @@ int sort(){
         if curr > next: switch vals 
         then, compare the last (already sorted) element in the list
     do the same until you sort all the elements
-
     NOTE; in the linked lists, we only switch the vals of the lnked list, the memory addresses stays the same. 
 
     IF the head does not exist, or the next -> next val of the head is NULL, then the linked list is doesnt exist, 
@@ -80,12 +79,12 @@ int sort(){
         nextnode = curr -> next;
         //making a node that points to the next element of the list
 
-        insert(curr );
-        //essentially, this will make sure that rest of the partly sorted list will insert the next at the right place
-
+        insert(curr);
         curr = nextnode;
+        //essentially, this will make sure that rest of the partly sorted list will insert the next at the right place
         // making sure that in the next loop, the curr points to the next value
     }
+    head = sorted;
 }
 
 void insert(struct node *new){
@@ -98,7 +97,7 @@ void insert(struct node *new){
         - need to connect the head to the sorted node (new -> next = sorted)
         - update the new node to be the same as the sorted node  
     */
-   if (sorted == NULL){
+   if (sorted == NULL || sorted -> val >= new -> val){
         new -> next = sorted;
         sorted = new;
    }
@@ -108,9 +107,23 @@ void insert(struct node *new){
    else{
         struct node * curr = sorted;
         //to store the current node
-        if()
+        while(curr -> next != NULL && curr -> next -> val  <  new -> val){
+            curr = curr -> next;
+            //goes through rest to put curr at the right place
+        }
+        new -> next = curr -> next;
+        curr -> next = new;
    }
 }
+
+void Listprint(){
+    struct node* i = head;
+    while (i != NULL) {
+        printf("%d ", i->val);
+        i = i->next;
+    }
+}
+
 
 void main(){
     int num; 
@@ -119,6 +132,6 @@ void main(){
     linklist(num);
 
     sort();
-
+    Listprint();
     //print sorted linked list
 }
