@@ -1,8 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//LOL WE CAN TRY IG HEHEHEHEHEHEH
-
 struct node{
     int val; 
     struct node *next;
@@ -16,9 +14,9 @@ struct node *head = NULL;       //making the head node as a global
 
 void linklist(int n){
     int val;
-    struct node *temp;                  // points to the 
-    struct node *new;
-    struct node *before;
+    struct node *temp;                  // points to the temp node 
+    struct node *new;                   // new node placed here 
+    struct node *before;                // prev node ptr
 
     head = (struct node *)malloc(sizeof(struct node));      //making the head node
 
@@ -32,7 +30,7 @@ void linklist(int n){
     printf("Enter the values of %d nodes:\n", n);
     scanf("%d", &val);
     head -> next = NULL;                // the next pointer points to a null val
-    head -> prev = NULL;                // prev points to nothing
+    head -> prev = NULL;                // prev points to nothing, as there is nothing before head
     head -> val = val;                  // the val in the node is the val inputed into function
     temp = head;                        // special condition for the first node, since we need to connect the head
 
