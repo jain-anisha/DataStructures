@@ -51,6 +51,7 @@ int main()
 
     //printing the list
 
+
     //using i to traverse the list
 
     struct Node * i = head;
@@ -60,5 +61,4 @@ int main()
     }
     printf("NULL");
     return 0;
-
 }

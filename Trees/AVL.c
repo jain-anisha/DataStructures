@@ -1,14 +1,19 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//code rewritten from: https://www.codesdope.com/blog/article/binary-search-tree/
+//IN PROGRESS
 
-//some parts taken from github (mostly just intializations and )
+// basically a way to balance out a binary search tree
 
-struct node {
+//to make AVL, we first must make a binary search tree.
+//AVL is in place WHILE making the binary search tree
+
+struct node
+{
     int val;
-    struct node * left; //smaller branch
-    struct node * right; // bigger branch
+    struct node *left;
+    struct node *right;
+    int height;
 };
 
 // we're looking at a single node at a time
@@ -16,38 +21,38 @@ struct node {
 
 typedef struct node * NodeAddress;
 
-struct node * root = NULL;
-//creating a global for the root
+int height(struct node *node)
+{
+    if (node == NULL)
+        return 0;
+    return node->height;
+    //returns height of a node
+}
 
-NodeAddress new(int input){
+struct node * new(int input){
     // mallocing space for a new node
     struct node * y = (struct node *)malloc(sizeof(struct node));
     // assigning values for the ptrs and val for the new node
     y -> val = input;
     y -> left = NULL;
     y -> right = NULL;
+    y -> height = 1;
+    // as we are inserting the node at a leaf
     return y;
     //returning the new node 
 }
 
-NodeAddress arrayToReverseBST (int * a, int n){
-
-    root = newinput(root, &a[0]);
-    for(int i = 1; i < n; i++){
-        newinput(root, &a[i]);
-    }
-    return root;
-}
-
-NodeAddress * newinput(struct node * root, int input){
+struct node * newinput(struct node * root, int input){
     //if the root is NULL, then we place the new node 
     if (root == NULL){
         return new(input);
+        // found the current leaf, inserting the node here
     }
-    if (input > root -> val){
+    //three cases: input greater than root, input less than root, or the input is the root
+    if (input < root -> val){
         root -> left = newinput(root -> left, input);
     }
-    else{
+    else if (input > root -> val){
         root -> right = newinput(root -> right, input);
     }
     return root;
@@ -55,8 +60,11 @@ NodeAddress * newinput(struct node * root, int input){
 }
 
 void main(){
-    int array[7] = {22, 32, 1, 90, 4, 24, 15};
-    arrayToReverseBST(array, 7);
+    struct node * root = NULL;
+    //intializing the first node as NULL
+    
     // making 24 the top of the bst
 }
+
+
 

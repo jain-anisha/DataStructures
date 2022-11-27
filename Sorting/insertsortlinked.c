@@ -72,18 +72,18 @@ int sort(){
     or it os sorted
     */
    struct node * curr = head;
-   struct node * next;
+   struct node * nextnode;
    // intializing the first node to be pointing to the head node
     while (curr != NULL){
         //this will go through every node, incrementing by one everytime
 
-        next = curr -> next;
+        nextnode = curr -> next;
         //making a node that points to the next element of the list
 
-        insert(curr);
+        insert(curr );
         //essentially, this will make sure that rest of the partly sorted list will insert the next at the right place
 
-        curr = next;
+        curr = nextnode;
         // making sure that in the next loop, the curr points to the next value
     }
 }
@@ -94,8 +94,22 @@ void insert(struct node *new){
     - 1: new is the head
     - 2: new is not the head
 
-    when new is the head,  
+    when new is the head, sorted == NULL\
+        - need to connect the head to the sorted node (new -> next = sorted)
+        - update the new node to be the same as the sorted node  
     */
+   if (sorted == NULL){
+        new -> next = sorted;
+        sorted = new;
+   }
+   //otherwise, need to put the new element at the right place of the sorted list
+   /* if the new node's value is less than the current node's value, need to switch the values
+   */
+   else{
+        struct node * curr = sorted;
+        //to store the current node
+        if()
+   }
 }
 
 void main(){

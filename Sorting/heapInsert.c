@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+
 void swap(int* x, int* y)
 {   int temp = *x;
     *x = *y;
@@ -19,9 +20,12 @@ void heapify(int array[], int n, int start){
         if(array[lChild] < array[smallest]){
             smallest = lChild;                  // storing the index point of the larger element btwn lChild and the root
         }
+    }
+    if(rChild < n){
         if(array[rChild] < array[smallest]){
             smallest = rChild;                  //storing the index point of the smaller element btwn the prev largest...
         }                                       //... element, and rChild
+    }
         //now we have three cases of the smaller element: the original, lChild, and rChild. We will need to swap in all...
         //cases other than if the smaller element found is the same as the original root. SO:
         if (smallest != start){
@@ -30,7 +34,7 @@ void heapify(int array[], int n, int start){
             heapify(array, n, smallest);
         }
     }
-}
+
 
 
 void insert(){
