@@ -109,8 +109,8 @@ struct node * partition(struct node *first, struct node* pivot){
             else{
             greater -> next = curr;
             prevgreat -> next = greater;
-            prevgreat = prevgreat -> next;
             greater = greater -> next;
+            prevgreat = prevgreat -> next;
             }
             igreat++;
         }
@@ -136,6 +136,7 @@ struct node * partition(struct node *first, struct node* pivot){
 }
 
 struct node * qsort(struct node* start, struct node* stop){
+    struct node * returns = NULL;
     if ( start == NULL || stop == NULL  || start == stop){
         return start;
     }
@@ -143,7 +144,7 @@ struct node * qsort(struct node* start, struct node* stop){
     struct node* wall = partition(start, stop);
 
     if (wall==NULL ){
-        return start;
+        return wall;
     }
 
     qsort(start, wall - 1);          // less list
@@ -172,5 +173,5 @@ int main()
     scanf("%d", &num);
     struct node * header = linklist(num);
     struct node * ender = findlast(header);
-    qsort(header, ender);
+    //qsort(header, ender);
 }
