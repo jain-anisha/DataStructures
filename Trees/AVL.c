@@ -84,7 +84,35 @@ struct node * newinput(struct node * root, int input){
                 - node -> right: left rotate
                 - left rotate
     */
+    if (bal > 1){
+        if(input < root -> left -> val){                //left left 
+            return rightRotate(root);
+        }
+        else if(input > root -> left -> val){           //left right
+            root -> left = leftRotate(root -> left);
+            return rightRotate(root);
+        }
+    }
+    else if (bal < -1){
+        if(input > root -> right -> val){               //right right
+            return leftRotate(root);
+        }
+        else if(input < root -> right -> val){          //right left
+            root -> right = rightRotate(root -> right);
+            return leftRotate(root);
+        }
+    }
    return root;
+}
+
+struct node * leftRotate(struct node * node1){
+    /* new top is node1 -> right
+    
+    */
+}
+
+struct node *rightRotate(struct node * node2){
+
 }
 
 int balanceVal(struct node * n){
