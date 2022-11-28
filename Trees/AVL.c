@@ -106,12 +106,23 @@ struct node * newinput(struct node * root, int input){
 }
 
 struct node * leftRotate(struct node * node1){
-    /* new top is node1 -> right
-    
+    /*new top is node1 -> right
+    newTop's left root swaps to the other node
     */
+    struct node * newTop = node1 -> right;
+    struct node * swapRoot = newTop -> left;
+    newTop -> left = node1;
+    node1 -> right = swapRoot;
 }
 
 struct node *rightRotate(struct node * node2){
+    /*new top is node2 -> left
+    newTop's right root swaps to the other node
+    */
+    struct node * newTop = node2 -> left;
+    struct node * swapRoot = newTop -> right;
+    newTop -> right = node2;
+    node2 -> left = swapRoot;
 
 }
 
