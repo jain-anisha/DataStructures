@@ -65,6 +65,8 @@ void printBST(struct node *root)
 
     //  print the right subtree.
     printBST(root->right);
+
+    free(root);
 }
 
 
@@ -76,6 +78,7 @@ void main(){
 
     arrayToReverseBST(array, 7);
     printBST(root);
+
 
     // making 24 the top of the bst
 }
