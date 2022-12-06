@@ -33,10 +33,10 @@ struct node * newinput(int input, NodeAddress root){
         return new(input);
     }
     if (input > root -> val){
-        (root -> left) = newinput(input, root -> left);
+        (root -> right) = newinput(input, root -> right);
     }
     else{
-        (root -> right) = newinput(input, root -> right);
+        (root -> left) = newinput(input, root -> left);
     }
     return root;
     //calling itself recursively inorder to find the right place to input the new value
@@ -68,11 +68,15 @@ void printBST(struct node *root)
 }
 
 
-void main(){
 
+
+void main(){
+    
     int array[7] = {22, 32, 1, 90, 4, 24, 15};
+
     arrayToReverseBST(array, 7);
     printBST(root);
+
     // making 24 the top of the bst
 }
 
