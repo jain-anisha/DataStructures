@@ -1,10 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//code rewritten from: https://www.codesdope.com/blog/article/binary-search-tree/
-
-//some parts taken from github (mostly just intializations and )
-
 struct node {
     int val;
     struct node * left; //smaller branch
@@ -30,33 +26,56 @@ NodeAddress new(int input){
     //returning the new node 
 }
 
-NodeAddress arrayToReverseBST (int * a, int n){
 
-    root = newinput(root, &a[0]);
-    for(int i = 1; i < n; i++){
-        newinput(root, &a[i]);
-    }
-    return root;
-}
-
-NodeAddress * newinput(struct node * root, int input){
+struct node * newinput(int input, NodeAddress root){
     //if the root is NULL, then we place the new node 
     if (root == NULL){
         return new(input);
     }
     if (input > root -> val){
-        root -> left = newinput(root -> left, input);
+        (root -> left) = newinput(input, root -> left);
     }
     else{
-        root -> right = newinput(root -> right, input);
+        (root -> right) = newinput(input, root -> right);
     }
     return root;
     //calling itself recursively inorder to find the right place to input the new value
 }
 
+NodeAddress arrayToReverseBST (int * a, int n){
+
+    root = newinput( a[0], root);
+    for(int i = 1; i < n; i++){
+        newinput( a[i], root);
+    }
+    return root;
+}
+
+void printBST(struct node *root)
+{
+    // If the root node is NULL, return
+    if (root == NULL)
+        return;
+
+    // print the left subtree.
+    printBST(root->left);
+
+    // Print val of the current node.
+    printf("%d\n", root->val);
+
+    //  print the right subtree.
+    printBST(root->right);
+}
+
+
 void main(){
+
     int array[7] = {22, 32, 1, 90, 4, 24, 15};
     arrayToReverseBST(array, 7);
+    printBST(root);
     // making 24 the top of the bst
 }
+
+//did something, now the code works, still figuring out why
+// has something to do with naming conventions
 
