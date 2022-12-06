@@ -42,7 +42,7 @@ struct node * newinput(int input, NodeAddress root){
     //calling itself recursively inorder to find the right place to input the new value
 }
 
-NodeAddress arrayToReverseBST (int * a, int n){
+NodeAddress arrayToBST (int * a, int n){
 
     root = newinput( a[0], root);
     for(int i = 1; i < n; i++){
@@ -76,7 +76,7 @@ void main(){
     
     int array[7] = {22, 32, 1, 90, 4, 24, 15};
 
-    arrayToReverseBST(array, 7);
+    arrayToBST(array, 7);
     printBST(root);
 
 
