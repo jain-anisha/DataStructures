@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-
+#include<assert.h>
 //in progress: need to see why seg faulting 
 
 struct node {
@@ -18,9 +18,10 @@ struct node * root = NULL;
 //creating a global for the root
 
 //intializing functions:
-NodeAddress search (int input);
+NodeAddress search (struct node * root, int input);
 NodeAddress delete (int value);
 NodeAddress successor (NodeAddress node);
+struct node * newinput(int input, NodeAddress n);
 
 NodeAddress new(int input){
     // mallocing space for a new node
@@ -29,22 +30,23 @@ NodeAddress new(int input){
     y -> val = input;
     y -> left = NULL;
     y -> right = NULL;
+    assert(y -> right == NULL && y -> left == NULL);
     return y;
     //returning the new node 
 }
 
-struct node * newinput(int input, NodeAddress root){
+struct node * newinput(int input, NodeAddress n){
     //if the root is NULL, then we place the new node 
-    if (root == NULL){
+    if (n == NULL){
         return new(input);
     }
-    if (input > root -> val){
-        (root -> right) = newinput(input, root -> right);
+    if (input > n -> val){
+        (n -> right) = newinput(input, n -> right);
     }
     else{
-        (root -> left) = newinput(input, root -> left);
+        (n -> left) = newinput(input, n -> left);
     }
-    return root;
+    return n;
     //calling itself recursively inorder to find the right place to input the new value
 }
 
@@ -62,15 +64,15 @@ NodeAddress successor (NodeAddress node){
     return node;
 }
 
-NodeAddress search (int input){
+NodeAddress search (struct node * root, int input){
     if (root == NULL) {
         return root;
     }
     else if(input > root -> val){
-        return search(root -> right);
+        return search(root -> right, input);
     }
     else if(input < root -> val){
-        return search(root -> left);
+        return search(root -> left, input);
     }
     else{
         return root;
@@ -92,10 +94,10 @@ NodeAddress delete (int value){
             - copy the successor to the current node
             - delete the location of the OG successor
     */
-    NodeAddress node = search(value);
+    NodeAddress node = search(root, value);
 
     if(node == NULL){
-        return;
+        return NULL;
     }
     //can connect 2nd conditions to make it more simple
 
@@ -103,11 +105,10 @@ NodeAddress delete (int value){
         NodeAddress temp = node -> left;
         free(node);
     }
-    if(node -> left == NULL){
+    else if(node -> left == NULL){
         NodeAddress temp = node -> right;
         free(node);
     }
-
     // both children exist:
     else{
         NodeAddress next = successor(node);
@@ -117,17 +118,12 @@ NodeAddress delete (int value){
 }
 
 NodeAddress arrayToBST (int k){
-
     int data;           //stores inputted value of the BST node
-
     printf("Enter the values of the BST: ");
-    scanf("%d \n", &data);
 
-    root = new(data);        //intialization of the BST
-
-    for(int i = 1; i < k - 1; i++){
+    for(int i = 1; i < k; i++){
         scanf("%d \n", &data);
-        newinput(root, data);
+        root = newinput(data, root);
     }
     return root;
 }
@@ -135,26 +131,32 @@ NodeAddress arrayToBST (int k){
 void printBST(struct node *root)
 {
     // If the root node is NULL, return
-    if (root == NULL)
-        return;
-
-    // print the left subtree.
-    printBST(root->left);
-    // Print val of the current node.
-    printf("%d\n", root->val);
-    //  print the right subtree.
-    printBST(root->right);
-
-    free(root);
+    if (root != NULL){
+        
+        printf("-> %d\n", root->val);
+        printBST(root->left);
+        printBST(root->right);
+        //free(root);
+    }
 }
 
 void main(){
     
     int k;
+    NodeAddress root;
     printf("Enter total number of nodes in the BST: \n");
     scanf("%d", &k);
 
-    arrayToBST(k);
+    root = arrayToBST(k);
     printBST(root);
+
+    int del;
+    printf("Enter value to be deleted. ");
+    scanf("%d", &del);
+    printf("%d", del);
+    delete(del);
+    printBST(root);
+
+
     // making 24 the top of the bst
 }
