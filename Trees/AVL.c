@@ -2,13 +2,10 @@
 #include<stdlib.h>
 #include<assert.h>
 
-//just need to figure out how to print it
-
 // basically a way to balance out a binary search tree
 
 //to make AVL, we first must make a binary search tree.
 //AVL is in place WHILE making the binary search tree
-
 
 struct node
 {
@@ -19,7 +16,7 @@ struct node
 };
 
 int balanceVal(struct node * n);
-struct node *leftRotate(int k, struct node * node1);
+struct node *leftRotate(struct node * node1);
 struct node *rightRotate(int k, struct node * node2);
 int height(struct node *node);
 int greater(int one, int two);
@@ -73,9 +70,8 @@ NodeAddress newinput(struct node * node, int input){
         return node;
     }
 
-    //update the height
-    
-    node -> height = greater(height(node -> right), height(node -> left)) + 1;
+    //update the height    
+    node -> height = 1 + greater(height(node -> left), height(node -> right));
 
     //calling itself recursively inorder to find the right place to input the new value
     int bal = balanceVal(node);
@@ -108,23 +104,23 @@ NodeAddress newinput(struct node * node, int input){
             return rightRotate(0, node);
         }
         else if(input > node -> left -> val){           //left right
-            root -> left = leftRotate(0, node -> left);
+            root -> left = leftRotate(node -> left);
             return rightRotate(0, node);
         }
     }
     else if (bal < -1){
         if(input > node -> right -> val){               //right right
-            return leftRotate(0, node);
+            return leftRotate(node);
         }
         else if(input < node -> right -> val){          //right left
             node -> right = rightRotate(0, node -> right);
-            return leftRotate(0, node);
+            return leftRotate(node);
         }
     }
    return node;
 }
 
-struct node *leftRotate(int k, struct node * node1){
+struct node *leftRotate(struct node * node1){
     /*new top is node1 -> right
     newTop's left root swaps to the other node
     */
@@ -132,14 +128,14 @@ struct node *leftRotate(int k, struct node * node1){
 
     struct node * newTop = node1 -> right;
     struct node * swapRoot = newTop -> left;
+
     newTop -> left = node1;
     node1 -> right = swapRoot;
 
     //updating node1 height
-    node1 -> height = greater(height(node1 -> right), height(node1 -> left)) + 1;
+    node1 -> height = greater(height(node1 -> left), height(node1 -> right)) + 1;
 
-    newTop -> height = greater(height(newTop -> right), height(newTop -> left)) + 1;
-
+    newTop -> height = greater(height(newTop -> left), height(newTop -> right)) + 1;
 
     return newTop;
 }
@@ -152,21 +148,18 @@ struct node *rightRotate(int k, struct node * node2){
 
     struct node * newTop = node2 -> left;
     struct node * swapRoot = newTop -> right;
+
     newTop -> right = node2;
     node2 -> left = swapRoot;
 
     //updating heights of the nodes
-    node2 -> height = greater(height(node2 -> right), height(node2 -> left)) + 1;
-
-    newTop -> height = greater(height(newTop -> right), height(newTop -> left)) + 1;
+    node2 -> height = greater(height(node2 -> left), height(node2 -> right)) + 1;
+    newTop -> height = greater(height(newTop -> left), height(newTop -> right)) + 1;
 
     return newTop;
-
 }
 
-
 int balanceVal (struct node * n){
- 
     /*in order to balance a tree, need to know the weights of both sides of the tree
 
     when the node is NULL, the tree must also be empty, so both sides of the tree is the same, which makes
@@ -183,45 +176,36 @@ int balanceVal (struct node * n){
    }
 } 
 
-
 void printBST(struct node *root)
 {
     // If the root node is NULL, return
-    if (root == NULL)
-        return;
-    // print the left subtree.
-    printBST(root->left);
-    printf("-> %d\n", root->val);
-
-    // Print val of the current node.
-
-    //  print the right subtree.
-    printBST(root->right);
-
-    //printf(" not %d\n", root->val);
-
-    //free(root);
+    if (root != NULL){
+        
+        printf("-> %d\n", root->val);
+        printBST(root->left);
+        printBST(root->right);
+        //free(root);
+    }
 }
 
 NodeAddress arrayToBST (int k){
     int data;           //stores inputted value of the BST node
 
     printf("Enter the values of the BST: ");
-    scanf("%d \n", &data);
+    //scanf("%d \n", &data);
 
-    root = newinput(root, data);        //intialization of the BST
+    //root = new(data);        //intialization of the BST
 
-    for(int i = 1; i < k - 1; i++){
+    for(int i = 0; i < k - 1; i++){
         scanf("%d \n", &data);
-        newinput(root, data);
+        root = newinput(root, data);
     }
     return root;
 }
 
 void main(){
-
     //intializing the first node as NULL
-    
+    NodeAddress root = NULL;
     int k;
     printf("Enter total number of nodes in the BST: \n");
     scanf("%d", &k);
@@ -230,6 +214,3 @@ void main(){
     printBST(root);
     // making 24 the top of the bst
 }
-
-
-
