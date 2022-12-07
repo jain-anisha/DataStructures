@@ -190,15 +190,18 @@ void printBST(struct node *root)
 
 NodeAddress arrayToBST (int k){
     int data;           //stores inputted value of the BST node
+    int array[k];       //intializing array where elements are inputted
+    printf("Enter the values of the BST:");
 
-    printf("Enter the values of the BST: ");
-    //scanf("%d \n", &data);
+    for (int i = 0; i < k; i++){        //inserting inputs into array
+        scanf("%d", &array[i]);
+    }
 
-    //root = new(data);        //intialization of the BST
+    root = new(array[0]);
+    //prev error did not take in the last input, fixed it by inputting into an array
 
-    for(int i = 0; i < k - 1; i++){
-        scanf("%d \n", &data);
-        root = newinput(root, data);
+    for(int i = 1; i < k; i++){         // inserting values into the bst from the array
+        root = newinput(root, array[i]);
     }
     return root;
 }
