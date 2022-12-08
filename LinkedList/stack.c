@@ -120,7 +120,6 @@ int deleteEle(struct node * last, int n){
     if(input == n){
         while(i + 1 < input){
             temp = temp -> prev;
-            temp -> next = NULL;
             free(last);
             last = temp;
             i++;
@@ -137,7 +136,7 @@ int deleteEle(struct node * last, int n){
             last = temp;
             i++;
         }
-        return 1;
+        return 1; 
     }
 }
 
