@@ -84,6 +84,11 @@ int enterEle(struct node * last){
     printf("Enter the number of elements to be entered: ");
     scanf("%d", &input);
 
+    if(input < 1){
+        printf("Please enter an input greater than zero.\n");
+        return 4;
+    }
+
     printf("Enter %d values of the elements: \n", input);
     while(i < input){
         newNode = (struct node *)malloc(sizeof(struct node));
@@ -112,8 +117,8 @@ int deleteEle(struct node * last, int n){
     printf("Enter the number of elements to be deleted: ");
     scanf("%d", &input);
 
-    if(input > n){ 
-        printf("Enter an integer less than %d.\n", input);
+    if(input > n || input < 1){ 
+        printf("Enter an integer less than %d and greater than zero.\n", input);
         deleteEle(last, n);
     }
 
