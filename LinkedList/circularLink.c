@@ -66,13 +66,12 @@ int circularChecker(int n){
         - hare goes two head
         - if hare < tortoise, it is a circular list
     */
-    struct node *h, *t = head;
+    struct node *h = head;
+    struct node *two = head -> next;
 
-    while(h != NULL || h -> next != NULL || h -> next -> next != NULL){
-        t = t -> next;
-        h = h -> next -> next;
-        printf("here ");
-        if (h < t){
+    while(two != NULL && two != h){
+        two = two -> next;
+        if (h == two){
             return 1;
         }
     }
