@@ -2,8 +2,6 @@
 
 This is my DStruc repo.
 
-All of the Assignments are under the Sorting folder
-
 ## Bugs Galore
 
 One interesting bug I found (or rather, created):
