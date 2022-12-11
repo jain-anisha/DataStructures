@@ -35,10 +35,17 @@ void heapify(int array[], int n, int start){
         }
     }
 
+int * insert(int val, int len, int array[]){
+    int arr2[len + 1];
+    arr2[0] = val;
 
+    int i = 1;          // counter for index
+    while(i < len){
+        arr2[i] = array[i - 1];
+    }
 
-void insert(){
-    //inserting an element by 
+    heapify(arr2, len + 1, ((len + 1)/2) - 1);
+    return * arr2;
 }
 
 main(){
@@ -53,7 +60,7 @@ main(){
     print the array 
     now, have the user input the value of the element to be inserted.
 
-    then, intialize a new array with a size of 10 elements
+    then, intialize a new array with a size of 11 elements
     place the inserted value at the top
     then, sift down AKA heapify again
     print out the new array
@@ -63,10 +70,21 @@ main(){
     printf("Enter number of elements in your list:");
     scanf("%d", &length);
     int array[length], i;                       // array w/ n # of elements 
-    printf("Enter the %d elements to be sorted.\n", length);
+    printf("Enter the %d elements in the heap.\n", length);
     for (i = 0; i < length; i++){
         scanf("%d", &array[i]);
     }
-    insert(array, length, )
+    heapify(array, length, (length/2) - 1);
 
+    int input;
+    printf("Enter the element to be inserted into the heap");
+    scanf("%d", &input);
+
+    int * r = insert(input, length, array);
+    int ii; 
+
+    printf("The array is: ");                   //printing array
+    for(ii = 0; ii<length + 1; ii++) {
+        printf("%d ", r[ii]);
+    }
 }
