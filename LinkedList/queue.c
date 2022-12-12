@@ -158,8 +158,9 @@ int stackFunc(struct node * last, int n){
         
     }
     else if (userInput == 2){
-        deleteEle(head, n);
-        return 2;
+        out = deleteEle(head, n);
+        if(out == 0) {return out;}
+        else {return 2;}
     }
     else { return 10; }
 }
@@ -177,14 +178,17 @@ void main()
 
     if(out == 1){
         Listprint(head);
+        return;
     }
     else if(out == 0){
         printf("Queue is empty");
+        return;
     }
     else if(out == 2){
         return;
     }
     else{
         printf("Queue has not changed.");
+        return;
     }
 }
