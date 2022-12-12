@@ -51,10 +51,9 @@ struct node * linklist(int n){
             before = before -> next;
     }
     return temp;
-    printf("STACK CREATED SUCCESSFULLY");
 }
 
-void Listprint(){
+void Listprint(struct node * head){
 
     struct node* i = head;
     struct node * last = head;
@@ -120,11 +119,11 @@ int deleteEle(struct node * head, int n){
 
     if(input > n || input < 1){ 
         printf("Enter an integer less than %d and greater than zero.\n", input);
-        deleteEle(head, n);
+        return 7;
     }
 
     if(input == n){
-        while(i + 1 < input){
+        while(i < input){
             temp = temp -> next;
             free(delete);
             delete = temp;
@@ -139,10 +138,10 @@ int deleteEle(struct node * head, int n){
             temp = temp -> next;
             temp -> prev = NULL;
             free(delete);
-            delete = temp;
             i++;
+            delete = temp;
         }
-        return 1; 
+        Listprint(temp);
     }
 }
 
@@ -159,27 +158,31 @@ int stackFunc(struct node * last, int n){
         
     }
     else if (userInput == 2){
-        return deleteEle(head, n);
+        deleteEle(head, n);
+        return 2;
     }
     else { return 10; }
 }
 
-int main()
+void main()
 {
     int num; 
 
     printf("Enter number of nodes: ");
     scanf("%d", &num);
     struct node * last = linklist(num);
-    Listprint();
+    Listprint(head);
 
     int out = stackFunc(last, num);
 
     if(out == 1){
-        Listprint();
+        Listprint(head);
     }
     else if(out == 0){
         printf("Queue is empty");
+    }
+    else if(out == 2){
+        return;
     }
     else{
         printf("Queue has not changed.");
