@@ -2,7 +2,7 @@
 
 This folder contains sorting algorithms in both arrays and linked lists. It also contains the code for reversing a linked list.
 
-# # Array Sorting
+## Array Sorting
 
 - heapExtractMin.c: creates a minHeap using heapify, then extracts the first element of the minHeap (AKA the smallest element).
 
@@ -20,7 +20,7 @@ This folder contains sorting algorithms in both arrays and linked lists. It also
 
 - sortEveryOther.c - inputs integer values into an array, then sorts every other element.
 
-# # Linked List Sorting
+## Linked List Sorting
 
 - insertionSortArray.c - inputs integers into a linked list, then sorts it with insertion sort
 
@@ -28,7 +28,7 @@ This folder contains sorting algorithms in both arrays and linked lists. It also
 
 - selectsortlinked.c - inputs integers into a linked list, then sorts it with selection sort
 
-# # Misc
+## Misc
 
 - RevLinkedList.c - makes and reverses a linked list
 
