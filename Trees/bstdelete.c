@@ -119,14 +119,22 @@ NodeAddress delete (int value){
 
 NodeAddress arrayToBST (int k){
     int data;           //stores inputted value of the BST node
-    printf("Enter the values of the BST: ");
+    int array[k];       //intializing array where elements are inputted
+    printf("Enter the values of the BST:");
 
-    for(int i = 1; i < k; i++){
-        scanf("%d \n", &data);
-        root = newinput(data, root);
+    for (int i = 0; i < k; i++){        //inserting inputs into array
+        scanf("%d", &array[i]);
+    }
+
+    root = new(array[0]);
+    //prev error did not take in the last input, fixed it by inputting into an array
+
+    for(int i = 1; i < k; i++){         // inserting values into the bst from the array
+        root = newinput(array[i], root);
     }
     return root;
 }
+
 
 void printBST(struct node *root)
 {
@@ -156,7 +164,6 @@ void main(){
     printf("%d", del);
     delete(del);
     printBST(root);
-
 
     // making 24 the top of the bst
 }
