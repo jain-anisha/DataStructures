@@ -142,6 +142,7 @@ int deleteEle(struct node * head, int n){
             delete = temp;
         }
         Listprint(temp);
+        return 2;
     }
 }
 
